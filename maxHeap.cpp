@@ -21,11 +21,12 @@ void maxHeap<T>::max_heapify(int i , int sz) {
 template<class T>
 void maxHeap<T>::bottom_up_heapify(int i) {
     int parent = (i - 1) / 2;
-    if (arr[parent] > 0) {
-        if (arr[i] > arr[parent]) {
-            swap(arr[i], arr[parent]);
-            bottom_up_heapify(parent);
-        }
+    if(parent < 0)
+        return;
+
+    if (arr[i] > arr[parent]) {
+        swap(arr[i], arr[parent]);
+        bottom_up_heapify(parent);
     }
 
 }
