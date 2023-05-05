@@ -12,7 +12,9 @@ int main(){
     h.insert(60);
     h.insert(70);
     h.insert(80);
-    for(int i=0;i<h.get_size()/2;i++){
-      cout<<h[i]<<' '<<h[h.get_left_child(i)]<<' '<<h[h.get_right_child(i)]<<endl;
-    }
+    h.insert(90);
+    h.insert(100);
+    h.print();
 }
+
+
