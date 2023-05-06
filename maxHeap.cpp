@@ -23,7 +23,6 @@ void maxHeap<T>::bottom_up_heapify(int i) {
     int parent = (i - 1) / 2;
     if(parent < 0)
         return;
-
     if (arr[i] > arr[parent]) {
         swap(arr[i], arr[parent]);
         bottom_up_heapify(parent);
