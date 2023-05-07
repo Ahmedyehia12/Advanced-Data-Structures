@@ -11,6 +11,6 @@ int main(){
     tree.insert(50);
     tree.insert(25);
     tree.insert(35);
-    tree.print();
+    tree.print_sorted();
 
 }

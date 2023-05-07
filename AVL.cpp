@@ -120,19 +120,30 @@ void AVL<T>::insert(T key) {
         temp = temp->parent;
     }}
 template<class T>
-void AVL<T>::print() {
-    queue<AVL_node<T>*> q;
-    q.push(this->root);
-    while(!q.empty()){
-        AVL_node<T>* temp = q.front();
-        q.pop();
-        cout << temp->key << " ";
-        if(temp->left != nullptr){
-            q.push(temp->left);
-        }
-        if(temp->right != nullptr){
-            q.push(temp->right);
-        }
-    }
+void AVL<T>::erase(T key) {
+
 
 }
+
+template<class T>
+void AVL<T>::print_sorted() {
+    stack<AVL_node<T>*> s;
+    AVL_node<T>* temp = this->root;
+    while(temp != nullptr){
+        s.push(temp);
+        temp = temp->left;
+    }
+    while(!s.empty()){
+        temp = s.top();
+        s.pop();
+        cout << temp->key << " ";
+        temp = temp->right;
+        while(temp != nullptr){
+            s.push(temp);
+            temp = temp->left;
+        }
+    }
+    cout << endl;
+
+}
+

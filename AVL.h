@@ -37,10 +37,11 @@ public:
     void right_rotate(AVL_node<T>* node);
     void left_rotate(AVL_node<T>* node);
     void insert(T key);
-    void delete_node(T key);
-    void print();
+    void erase(T key);
+    void print_sorted();
 
 };
+
 
 
 
