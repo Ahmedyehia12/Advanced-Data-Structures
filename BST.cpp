@@ -68,7 +68,6 @@ void BST<T>::insert(T data) {
 template<class T>
 void BST<T>::print(BSTNode<T> *p) {
     if(p!= nullptr){
-
         cout << p->getKey() << " ";
         print(p->getLeft());
         print(p->getRight());
