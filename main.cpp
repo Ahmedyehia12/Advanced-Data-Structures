@@ -11,7 +11,7 @@ int main(){
     h.insertKey(50);
     h.printSorted();
     cout<<endl;
-    for(int i=0;i<5;i++){
+    for(int i = 0 ; i < 5 ; i++){
         cout<<h[i]<<" ";
     }
 

@@ -112,6 +112,10 @@ int minHeap<T>::getCapacity() {
 template<class T>
 void minHeap<T>::printSorted() {
     T *temp = new T[size];
+    T* cpy = new T[size];
+    for(int i = 0; i < size; i++){
+        cpy[i] = arr[i];
+    }
     int n = size;
     for(int i = 0; i < n; i++){
         temp[i] = arr[0];
@@ -120,9 +124,11 @@ void minHeap<T>::printSorted() {
     for(int i = 0; i < n; i++){
         cout<<temp[i]<<" ";
     }
+    size = n;
     for(int i = 0; i < n; i++){
-        insertKey(temp[i]);
+        arr[i] = cpy[i];
     }
-}
+    delete[] temp;
+    delete[] cpy;}
 
 
