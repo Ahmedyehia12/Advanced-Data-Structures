@@ -14,6 +14,7 @@ int main(){
     h.insert(80);
     h.insert(90);
     h.insert(100);
+    h.heapSort();
     h.print();
 }
 

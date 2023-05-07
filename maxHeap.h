@@ -33,10 +33,12 @@ public:
     void max_heapify(int i , int size);
     void bottom_up_heapify(int i);
     void insert(T val);
-    void build_max_heap(T *arr , int size);
+    void build_max_heap(T *a , int n);
     void print_sorted();
     void print();
     void heapSort();
+    T get_max();
+    void extract_max();
     T& operator[](int i){
         if(i >= size || i < 0)
             throw "Index out of bound";
@@ -45,6 +47,7 @@ public:
 
 
 };
+
 
 
 

@@ -41,36 +41,73 @@ void maxHeap<T>::insert(T val) {
     size++;
 }
 template<class T>
-void maxHeap<T>::build_max_heap(T *arr, int size) {
-    this->size = size;
-    this->arr = arr;
-    for(int i = size/2 ; i >= 0 ; i--){
-        max_heapify(i , size);
+T maxHeap<T>::get_max() {
+    if(size == 0){
+        cout<<"Heap is empty"<<endl;
+        return -1;
+    }
+    return arr[0];
+}
+template<class T>
+void maxHeap<T>::extract_max() {
+    if(size == 0){
+        cout<<"Heap is empty"<<endl;
+        return;
+    }
+    swap(arr[0],arr[size-1]);
+    size--;
+    max_heapify(0,size);
+}
+template<class T>
+void maxHeap<T>::build_max_heap(T *a, int n) {
+    if(n > capacity){
+        cout<<"Heap capacity is less than array size"<<endl;
+        return;
+    }
+    size = n;
+    for(int i = 0 ; i < n ; i++){
+        arr[i] = a[i];
+    }
+    for(int i = n/2 ; i >= 0 ; i--){
+        max_heapify(i,n);
     }
 }
 template<class T>
 void maxHeap<T>::print_sorted() {
-    priority_queue<T>q;
-    for(int i=0;i<size;i++){
-        q.push(-arr[i]);
+    T* cpy = new T[size];
+    int sz = size;
+    T* temp = new T[size];
+    for(int i = 0 ; i < sz ; i++){
+        temp[i] = arr[i];
     }
-    while(!q.empty()){
-        cout<<(-q.top())<<' ';
-        q.pop();
+    for(int i = 0 ; i < sz ; i++){
+        cpy[i] = arr[0];
+        extract_max();
     }
     cout<<endl;
+    size = sz;
+    for(int i = 0 ; i < sz ; i++){
+        arr[i] = temp[i];
+    }
+    delete [] temp;
+    for(int i = sz-1 ; i >=0 ; i--){
+        cout<<cpy[i]<<' ';
+    }
+    cout<<endl;
+    delete [] cpy;
 }
 template<class T>
 void maxHeap<T>::heapSort() {
-int cpy = this->size;
-swap(arr[0],arr[cpy-1]);
-cpy--;
-max_heapify(0,cpy);
-while(cpy>0){
+    int cpy = this->size;
     swap(arr[0],arr[cpy-1]);
     cpy--;
     max_heapify(0,cpy);
-}}
+    while(cpy>0){
+        swap(arr[0],arr[cpy-1]);
+        cpy--;
+        max_heapify(0,cpy);
+}
+}
 template<class T>
 void maxHeap<T>::print() {
     for(int i = 0 ; i < size ; i++){
