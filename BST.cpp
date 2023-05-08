@@ -1,6 +1,4 @@
-//
-// Created by Mohannad on 03-May-23.
-//
+//Author : Mohanad Hisham
 
 #include "BST.h"
 #include <iostream>
@@ -39,7 +37,7 @@ bool BST<T>::search(T el) {
 
 template<class T>
 void BST<T>::insert(T data) {
-    BSTNode<T>* newNode = new BSTNode(data);
+    BSTNode<T>* newNode = new BSTNode<T>(data);
     if (this->root == nullptr) {
         this->root = newNode;
         return;
@@ -68,9 +66,8 @@ void BST<T>::insert(T data) {
 template<class T>
 void BST<T>::print(BSTNode<T> *p) {
     if(p!= nullptr){
-
-        cout << p->getKey() << " ";
         print(p->getLeft());
+        cout << p->getKey() << " ";
         print(p->getRight());
     }
 }
@@ -120,10 +117,12 @@ void BST<T>::deleteNode(T el) {
                 minRight = minRight->left;
             }
             p->key = minRight->key;
-            if (prevMinRight == p)
-                prevMinRight->right = minRight->right;
-            else
-                prevMinRight->left = minRight->right;
+            if(minRight == prevMinRight->right){
+                prevMinRight->right = nullptr;
+            }
+            else if(minRight == prevMinRight->left){
+                prevMinRight->left = nullptr;
+            }
             delete minRight;
         }
     }
