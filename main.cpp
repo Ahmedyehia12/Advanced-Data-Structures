@@ -8,19 +8,53 @@
 #include "maxHeap.cpp"
 using namespace std;
 
-int main(){
-    BST<int> bst;
-    AVL<int> avl;
-    minHeap<int> minHeap(100);
-    maxHeap<int> maxHeap(100);
-    map<int,Student> m;
-    map<string , int>dept;
-    int n , id ;
-    string name , department;
-    ifstream in("input.txt");
-    // print file
+Student operator >> (istream &in , Student &s){
+    int id ;
+    string name ;
+    double gpa;
+    string dept;
+    in>>id>>name>>gpa>>dept;
+    s.setId(id);
+    s.setName(name);
+    s.setGpa(gpa);
+    s.setDept(dept);
+    return s;
+}
 
-   while(true){
+bool operator >(Student &s1 , Student &s2){
+    return s1.getId() > s2.getId();
+}
+bool operator <(Student &s1 , Student &s2){
+    return s1.getId() < s2.getId();
+}
+bool operator ==(Student &s1 , Student &s2){
+    return s1.getId() == s2.getId();
+}
+bool operator !=(Student &s1 , Student &s2){
+    return s1.getId() != s2.getId();
+}
+bool operator >=(Student &s1 , Student &s2){
+    return s1.getId() >= s2.getId();
+}
+bool operator <=(Student &s1 , Student &s2){
+    return s1.getId() <= s2.getId();
+}
+
+
+
+
+int main(){
+    BST<Student> bst;
+    AVL<Student> avl;
+    minHeap<Student>minHeap(100);
+    maxHeap<Student>maxHeap(100);
+    map<string , int>dept;
+    ifstream in("input.txt");
+    Student s;
+    while(in>>s){
+
+    }
+    while(true){
    cout<<"choose data structure :"<<endl;
    cout<<"1-BST"<<endl;
    cout<<"2-AVL"<<endl;

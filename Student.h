@@ -8,6 +8,12 @@ private:
     double gpa;
     string dept;
 public:
+    Student(){
+        id = 0;
+        name = "";
+        gpa = 0;
+        dept = "";
+    }
     Student(int id, string name, double gpa, string dept){
         this->id = id;
         this->name = name;
