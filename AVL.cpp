@@ -225,7 +225,7 @@ void AVL<T>::erase(T key) {
 
 }
 template<class T>
-void AVL<T>::print(AVL_node<T> *node) {
+void AVL<T>::print_in_order(AVL_node<T> *node) {
     if (node == nullptr) {
         return;
     }
