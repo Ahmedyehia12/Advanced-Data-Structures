@@ -1,19 +1,16 @@
 #include <iostream>
-#include "AVL.cpp"
-#include "BST.cpp"
+#include "maxHeap.cpp"
+
 using namespace std;
 
 int main(){
-    AVL<int> tree;
-    tree.insert(10);
-    tree.insert(20);
-    tree.insert(30);
-    tree.insert(50);
-    tree.insert(25);
-    tree.insert(35);
-    tree.insert(45);
-    tree.erase(20);
-    tree.print(tree.get_root());
-
+    maxHeap<int> h(10);
+    h.insert(10);
+    h.insert(20);
+    h.insert(30);
+    h.insert(40);
+    h.insert(50);
+    h.insert(60);
+    h.print();
 
 }
