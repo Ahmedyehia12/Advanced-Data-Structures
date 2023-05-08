@@ -38,10 +38,10 @@ public:
     void left_rotate(AVL_node<T>* node);
     void insert(T key);
     void erase(T key);
-    void print_in_order(AVL_node<T>* node);
+    bool search(T key);
+    void print(AVL_node<T>* node);
 
 };
-
 
 
 

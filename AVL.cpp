@@ -225,7 +225,22 @@ void AVL<T>::erase(T key) {
 
 }
 template<class T>
-void AVL<T>::print_in_order(AVL_node<T> *node) {
+bool AVL<T>::search(T key) {
+    AVL_node<T> *temp = this->root;
+    while (temp != nullptr) {
+        if (temp->key == key) {
+            return true;
+        } else if (key < temp->key) {
+            temp = temp->left;
+        } else {
+            temp = temp->right;
+        }
+    }
+    return false;
+
+}
+template<class T>
+void AVL<T>::print(AVL_node<T> *node) {
     if (node == nullptr) {
         return;
     }
