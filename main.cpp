@@ -12,19 +12,8 @@ int main(){
     tree.insert(25);
     tree.insert(35);
     tree.insert(45);
-    tree.print_sorted();
-    cout << endl;
     tree.erase(20);
-    tree.print_sorted();
-    cout << endl;
-    tree.insert(9);
-    tree.print_sorted();
-    cout << endl;
-    tree.erase(10);
-    tree.print_sorted();
-    cout << endl;
-    tree.erase(30);
-    tree.print_sorted();
-    cout << endl;
+    tree.print(tree.get_root());
+
 
 }

@@ -38,7 +38,7 @@ public:
     void left_rotate(AVL_node<T>* node);
     void insert(T key);
     void erase(T key);
-    void print_sorted();
+    void print(AVL_node<T>* node);
 
 };
 

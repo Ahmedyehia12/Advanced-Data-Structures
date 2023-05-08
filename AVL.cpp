@@ -118,10 +118,13 @@ void AVL<T>::insert(T key) {
             right_rotate(temp);
         }
         temp = temp->parent;
-    }}
+    }
+
+}
 template<class T>
 void AVL<T>::erase(T key) {
     AVL_node<T>* temp = this->root;
+    AVL_node<T>* node = nullptr;
     while(temp != nullptr){
         if(temp->key == key){
             break;
@@ -146,6 +149,7 @@ void AVL<T>::erase(T key) {
         else{
             temp->parent->right = nullptr;
         }
+        node = temp->parent;
         delete temp;
     }
     else if(temp->left == nullptr){
@@ -154,13 +158,14 @@ void AVL<T>::erase(T key) {
             temp->right->parent = nullptr;
         }
         else if(temp == temp->parent->left){
-            temp->parent->right = temp->right;
+            temp->parent->left = temp->right;
             temp->right->parent = temp->parent;
         }
         else{
             temp->parent->right = temp->right;
             temp->right->parent = temp->parent;
         }
+        node = temp->parent;
         delete temp;
     }
     else if(temp->right == nullptr){
@@ -173,50 +178,60 @@ void AVL<T>::erase(T key) {
             temp->left->parent = temp->parent;
         }
         else{
-            temp->parent->left = temp->left;
+            temp->parent->right = temp->left;
             temp->left->parent = temp->parent;
         }
+        node = temp->parent;
         delete temp;
     }
     else{
-        if(temp == this->root){
-        }
-        else{
-            AVL_node<T>* temp2 = temp->right;
-            while(temp2->left != nullptr){
+        AVL_node<T>* temp2 = temp->right;
+        while(temp2->left != nullptr){
                 temp2 = temp2->left;
             }
-            temp->key = temp2->key;
-            temp2->parent->right = temp2->right;
-            if(temp2->right != nullptr){
-                temp2->right->parent = temp2->parent;
+        temp->key = temp2->key;
+            if(temp2 == temp2->parent->left){
+                temp2->parent->left =  nullptr;
             }
+            else if(temp2 == temp2->parent->right){
+                temp2->parent->right = nullptr;
+            }
+            node = temp2->parent;
             delete temp2;
+    }
+    AVL_node<T>* temp3 = node;
+    while(node != nullptr){
+        node->height = get_height(node);
+        node->bf = getBalanceFactor(node);
+        node = node->parent;
+    }
+    while(temp3 != nullptr){
+        if(temp3->bf<-1 && temp3->right->bf < 0){
+            left_rotate(temp3);
         }
-
+        else if(temp3->bf < -1 && temp3->right->bf > 0){
+            right_rotate(temp3->right);
+            left_rotate(temp3);
+        }
+        else if(temp3->bf > 1 && temp3->left->bf > 0){
+            right_rotate(temp3);
+        }
+        else if(temp3->bf > 1 && temp3->left->bf < 0){
+            left_rotate(temp3->left);
+            right_rotate(temp3);
+        }
+        temp3 = temp3->parent;
     }
 
 }
-
 template<class T>
-void AVL<T>::print_sorted() {
-    stack<AVL_node<T>*> s;
-    AVL_node<T>* temp = this->root;
-    while(temp != nullptr){
-        s.push(temp);
-        temp = temp->left;
+void AVL<T>::print(AVL_node<T> *node) {
+    if (node == nullptr) {
+        return;
     }
-    while(!s.empty()){
-        temp = s.top();
-        s.pop();
-        cout << temp->key << " ";
-        temp = temp->right;
-        while(temp != nullptr){
-            s.push(temp);
-            temp = temp->left;
-        }
-    }
-    cout << endl;
-
+    print(node->left);
+    cout << node->key << " ";
+    print(node->right);
 }
+
 
