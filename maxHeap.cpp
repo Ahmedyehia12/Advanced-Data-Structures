@@ -29,7 +29,6 @@ void maxHeap<T>::bottom_up_heapify(int i) {
     }
 
 }
-
 template<class T>
 void maxHeap<T>::insert(T val) {
     if(size == capacity){
