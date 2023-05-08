@@ -121,7 +121,80 @@ void AVL<T>::insert(T key) {
     }}
 template<class T>
 void AVL<T>::erase(T key) {
+    AVL_node<T>* temp = this->root;
+    while(temp != nullptr){
+        if(temp->key == key){
+            break;
+        }
+        else if(key < temp->key){
+            temp = temp->left;
+        }
+        else{
+            temp = temp->right;
+        }
+    }
+    if(temp == nullptr){
+        return;
+    }
+    if(temp->left == nullptr && temp->right == nullptr){
+        if(temp == this->root){
+            this->root = nullptr;
+        }
+        else if(temp == temp->parent->left){
+            temp->parent->left = nullptr;
+        }
+        else{
+            temp->parent->right = nullptr;
+        }
+        delete temp;
+    }
+    else if(temp->left == nullptr){
+        if(temp == this->root){
+            this->root = temp->right;
+            temp->right->parent = nullptr;
+        }
+        else if(temp == temp->parent->left){
+            temp->parent->right = temp->right;
+            temp->right->parent = temp->parent;
+        }
+        else{
+            temp->parent->right = temp->right;
+            temp->right->parent = temp->parent;
+        }
+        delete temp;
+    }
+    else if(temp->right == nullptr){
+        if(temp == this->root){
+            this->root = temp->left;
+            temp->left->parent = nullptr;
+        }
+        else if(temp == temp->parent->left){
+            temp->parent->left = temp->left;
+            temp->left->parent = temp->parent;
+        }
+        else{
+            temp->parent->left = temp->left;
+            temp->left->parent = temp->parent;
+        }
+        delete temp;
+    }
+    else{
+        if(temp == this->root){
+        }
+        else{
+            AVL_node<T>* temp2 = temp->right;
+            while(temp2->left != nullptr){
+                temp2 = temp2->left;
+            }
+            temp->key = temp2->key;
+            temp2->parent->right = temp2->right;
+            if(temp2->right != nullptr){
+                temp2->right->parent = temp2->parent;
+            }
+            delete temp2;
+        }
 
+    }
 
 }
 
