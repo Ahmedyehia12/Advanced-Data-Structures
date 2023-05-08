@@ -1,5 +1,6 @@
 #include <iostream>
 #include "maxHeap.cpp"
+
 using namespace std;
 
 int main(){
@@ -10,12 +11,5 @@ int main(){
     h.insert(40);
     h.insert(50);
     h.insert(60);
-    h.insert(70);
-    h.insert(80);
-    h.insert(90);
-    h.insert(100);
-    h.heapSort();
     h.print();
 }
-
-

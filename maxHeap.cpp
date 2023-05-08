@@ -50,7 +50,7 @@ T maxHeap<T>::get_max() {
 }
 template<class T>
 void maxHeap<T>::extract_max() {
-    if(size == 0){
+    if(this->size == 0){
         cout<<"Heap is empty"<<endl;
         return;
     }
