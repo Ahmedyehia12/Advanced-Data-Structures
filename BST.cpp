@@ -39,7 +39,7 @@ bool BST<T>::search(T el) {
 
 template<class T>
 void BST<T>::insert(T data) {
-    BSTNode<T>* newNode = new BSTNode(data);
+    BSTNode<T>* newNode = new BSTNode<T>(data);
     if (this->root == nullptr) {
         this->root = newNode;
         return;
