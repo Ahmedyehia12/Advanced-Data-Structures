@@ -51,8 +51,17 @@ int main(){
     map<string , int>dept;
     ifstream in("input.txt");
     Student s;
-    while(in>>s){
+    ifstream file("input.txt");
+    string line;
 
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            cout << line << '\n';
+        }
+        file.close();
+    }
+    else {
+        cout << "Unable to open file." << '\n';
     }
     while(true){
    cout<<"choose data structure :"<<endl;
