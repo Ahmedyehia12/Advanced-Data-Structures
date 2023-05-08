@@ -61,6 +61,11 @@ int main(){
               cout<<"enter student id:"<<endl;
               int id;
               cin>>id;
+              while(std.find(id)!=std.end()){
+                  cout<<"id already exists"<<endl;
+                  cout<<"enter student id:"<<endl;
+                  cin>>id;
+                }
               s.setId(id);
               cout<<"enter student name:"<<endl;
                 string name;
@@ -126,6 +131,11 @@ int main(){
            cout<<"enter student id:"<<endl;
               int id;
               cin>>id;
+              while(std.find(id)!=std.end()){
+                  cout<<"id already exists"<<endl;
+                  cout<<"enter student id:"<<endl;
+                  cin>>id;
+              }
               s.setId(id);
               cout<<"enter student name:"<<endl;
               string name;
@@ -189,6 +199,11 @@ int main(){
               cout<<"enter student id:"<<endl;
                   int id;
                   cin>>id;
+                  while(std.find(id)!=std.end()){
+                      cout<<"id already exists"<<endl;
+                      cout<<"enter student id:"<<endl;
+                      cin>>id;
+                    }
                   s.setId(id);
                   cout<<"enter student name:"<<endl;
                   string name;
