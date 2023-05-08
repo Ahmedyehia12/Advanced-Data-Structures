@@ -1,5 +1,7 @@
 #ifndef DS_ASSIGN3_MAXHEAP_H
 #define DS_ASSIGN3_MAXHEAP_H
+#include <bits/stdc++.h>
+using namespace std;
 template <class T>
 class maxHeap {
 private:
@@ -36,9 +38,9 @@ public:
     void build_max_heap(T *a , int n);
     void print_sorted();
     void print();
-    void heapSort();
     T get_max();
     void extract_max();
+    vector<T> heapSort();
     T& operator[](int i){
         if(i >= size || i < 0)
             throw "Index out of bound";
@@ -47,7 +49,6 @@ public:
 
 
 };
-
 
 
 

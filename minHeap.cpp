@@ -49,6 +49,25 @@ void minHeap<T>::extractMin() {
     size--;
     MinHeapify(0,size);
 }
+template<class T>
+vector<T> minHeap<T>::heapSort() {
+    T *temp = new T[size];
+    int sz = size;
+    for(int i = 0; i < sz; i++){
+        temp[i] = arr[i];
+    }
+    vector<T>sorted;
+    int n = size;
+    for (int i = 0; i < n; ++i) {
+        sorted.push_back(getMin());
+        extractMin();
+    }
+    size = sz;
+    for(int i = 0; i < size; i++){
+        arr[i] = temp[i];
+    }
+    return sorted;
+}
 
 template<class T>
 void minHeap<T>::MinHeapify(int i, int n) {

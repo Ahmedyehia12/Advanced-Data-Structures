@@ -95,17 +95,26 @@ void maxHeap<T>::print_sorted() {
     cout<<endl;
     delete [] cpy;
 }
+
 template<class T>
-void maxHeap<T>::heapSort() {
-    int cpy = this->size;
-    swap(arr[0],arr[cpy-1]);
-    cpy--;
-    max_heapify(0,cpy);
-    while(cpy>0){
-        swap(arr[0],arr[cpy-1]);
-        cpy--;
-        max_heapify(0,cpy);
-}
+vector<T> maxHeap<T>::heapSort() {
+    vector<T> sorted;
+    T *cpy = new T[size];
+    for(int i = 0 ; i < size ; i++){
+        cpy[i] = arr[i];
+    }
+    int sz = size;
+    for(int i = 0 ; i < sz ; i++){
+        sorted.push_back(get_max());
+        extract_max();
+    }
+    size = sz;
+    for(int i = 0 ; i < size ; i++){
+        arr[i] = cpy[i];
+    }
+    delete [] cpy;
+    reverse(sorted.begin(),sorted.end());
+    return sorted;
 }
 template<class T>
 void maxHeap<T>::print() {

@@ -1,5 +1,6 @@
 #ifndef DS_ASSIGN3_MINHEAP_H
 #define DS_ASSIGN3_MINHEAP_H
+#include <bits/stdc++.h>
 using namespace std;
 template <class T>
 class minHeap {
@@ -21,6 +22,8 @@ public:
     int getSize();
     int getCapacity();
     void printSorted();
+    vector<T> heapSort();
+
     T& operator[](int i){
         if(i >= size){
             cout<<"Index out of bounds"<<endl;

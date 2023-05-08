@@ -1,6 +1,7 @@
 #ifndef DS_ASSIGN3_AVL_H
 #define DS_ASSIGN3_AVL_H
 #include<bits/stdc++.h>
+using namespace std;
 template <class T>
 struct AVL_node{
     T key;
@@ -22,6 +23,7 @@ template <class T>
 class AVL {
 private:
     AVL_node<T> * root;
+    vector<T>v;
 public:
     AVL(){
         root = nullptr;
@@ -39,9 +41,13 @@ public:
     void insert(T key);
     void erase(T key);
     bool search(T key);
-    void print(AVL_node<T>* node);
+    vector<T> getSorted(vector<T>&v);
+    void inorder(AVL_node<T>* node , vector<T>&v);
 
 };
+
+
+
 
 
 

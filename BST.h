@@ -4,7 +4,8 @@
 
 #ifndef STUDY_BST_H
 #define STUDY_BST_H
-
+#include <vector>
+using namespace std;
 
 template <class T>
 class BSTNode{
@@ -36,10 +37,13 @@ public:
     bool isEmpty();
     bool search(T el);
     void insert(T data);
-    void print(BSTNode<T>* p);
+    void print(BSTNode<T>* p , vector<T> &v);
     void deleteNode(T el);
     BSTNode<T>*  getRoot();
+    vector<T> getSorted(vector<T> &v);
 };
+
+
 
 
 

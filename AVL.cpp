@@ -240,13 +240,19 @@ bool AVL<T>::search(T key) {
 
 }
 template<class T>
-void AVL<T>::print(AVL_node<T> *node) {
-    if (node == nullptr) {
+void AVL<T>::inorder(AVL_node<T> *node, vector<T> &v) {
+    if(node == nullptr)
         return;
-    }
-    print(node->left);
-    cout << node->key << " ";
-    print(node->right);
+    inorder(node->left,v);
+    v.push_back(node->key);
+    inorder(node->right,v);
+
 }
+template<class T>
+vector<T> AVL<T>::getSorted(vector<T> &v) {
+    inorder(root,v);
+    return v;
+}
+
 
 

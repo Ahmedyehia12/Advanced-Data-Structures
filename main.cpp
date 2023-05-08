@@ -8,18 +8,6 @@
 #include "maxHeap.cpp"
 using namespace std;
 
-Student operator >> (istream &in , Student &s){
-    int id ;
-    string name ;
-    double gpa;
-    string dept;
-    in>>id>>name>>gpa>>dept;
-    s.setId(id);
-    s.setName(name);
-    s.setGpa(gpa);
-    s.setDept(dept);
-    return s;
-}
 
 void readData(vector<Student> &students){
     ifstream file("input.txt");
@@ -38,23 +26,31 @@ void readData(vector<Student> &students){
     file.close();
 }
 int main(){
-    vector<Student>students;
-    readData(students);
-
     BST<int> bst;
     AVL<int> avl;
     minHeap<int>minHeap(100);
     maxHeap<int>maxHeap(100);
     map<string , int>dep;
     map<int , Student>std;
-
+    vector<Student>students;
+    readData(students);
+    for(int i = 0 ; i < students.size() ; i++){
+        Student s = students[i];
+        if(std.find(s.getId()) == std.end())
+            dep[s.getDept()]++;
+        std[s.getId()] = s;
+        bst.insert(s.getId());
+        avl.insert(s.getId());
+        minHeap.insertKey(s.getId());
+        maxHeap.insert(s.getId());
+    }
     while(true){
-   cout<<"Choose Data Structure: "<<endl;
-   cout<<"1-BST"<<endl;
-   cout<<"2-AVL"<<endl;
-   cout<<"3-Min Heap"<<endl;
-   cout<<"4-Max Heap"<<endl;
-   cout<<"5-Exit"<<endl;
+        cout<<"Choose Data Structure: "<<endl;
+       cout<<"1-BST"<<endl;
+       cout<<"2-AVL"<<endl;
+       cout<<"3-Min Heap"<<endl;
+       cout<<"4-Max Heap"<<endl;
+       cout<<"5-Exit"<<endl;
    int choice ;
    cin>>choice;
    if(choice == 1){
@@ -118,7 +114,16 @@ int main(){
                 }
             }
             else if(c==4){
-                bst.print(bst.getRoot());
+                vector<int>temp;
+                vector<int>sorted  = bst.getSorted(temp);
+                for(int i = 0 ; i < sorted.size() ; i++){
+                    cout<<"ID:"<<sorted[i]<<endl;
+                    cout<<"Name:"<<std[sorted[i]].getName()<<endl;
+                    cout<<"GPA:"<<std[sorted[i]].getGpa()<<endl;
+                    cout<<"Department:"<<std[sorted[i]].getDept()<<endl;
+                    if(i!=sorted.size()-1)
+                        cout<<endl;
+                }
                 cout<<endl;
             }
             else{
@@ -190,8 +195,17 @@ int main(){
                  }
          }
          else if(c==4){
-            avl.print(avl.get_root());
-            cout<<endl;
+             vector<int>temp;
+             vector<int>sorted = avl.getSorted(temp);
+                for(int i = 0 ; i < sorted.size() ; i++){
+                    cout<<"id:"<<sorted[i]<<endl;
+                    cout<<"name:"<<std[sorted[i]].getName()<<endl;
+                    cout<<"gpa:"<<std[sorted[i]].getGpa()<<endl;
+                    cout<<"dept:"<<std[sorted[i]].getDept()<<endl;
+                    if(i!=sorted.size()-1)
+                        cout<<endl;
+                }
+                cout<<endl;
          }
          else{
               break;
@@ -199,9 +213,9 @@ int main(){
    }
    else if(choice == 3){
        while(true){
-       cout<<"1 - add student"<<endl;
-       cout<<"2 - print sorted min heap"<<endl;
-       cout<<"3 - return to the main menu"<<endl;
+       cout<<"1 -add student"<<endl;
+       cout<<"2 -print sorted min heap"<<endl;
+       cout<<"3 -return to the main menu"<<endl;
        int c;
        cin>>c;
        if(c==1){
@@ -233,8 +247,16 @@ int main(){
                   cout<<"student inserted successfully"<<endl;
          }
          else if(c==2){
-              minHeap.printSorted();
-              cout<<endl;
+             vector<int>temp = minHeap.heapSort();
+                for(int i = 0 ; i < temp.size() ; i++){
+                    cout<<"id:"<<temp[i]<<endl;
+                    cout<<"name:"<<std[temp[i]].getName()<<endl;
+                    cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
+                    cout<<"dept:"<<std[temp[i]].getDept()<<endl;
+                    if(i!=temp.size()-1)
+                        cout<<endl;
+                }
+                cout<<endl;
          }
 
          else{
@@ -244,7 +266,7 @@ int main(){
    else if(choice == 4){
        while(true){
          cout<<"1 - add student"<<endl;
-         cout<<"2 - print sorted max heap"<<endl;
+         cout<<"2 - print sorted max heap by gpa"<<endl;
          cout<<"3 - return to main menu"<<endl;
          int c;
          cin>>c;
@@ -272,8 +294,16 @@ int main(){
                     cout<<"student inserted successfully"<<endl;
             }
             else if(c==2){
-                  maxHeap.print_sorted();
-                  cout<<endl;
+                vector<int>temp = maxHeap.heapSort();
+                for(int i = 0 ; i < temp.size() ; i++){
+                    cout<<"id:"<<temp[i]<<endl;
+                    cout<<"name:"<<std[temp[i]].getName()<<endl;
+                    cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
+                    cout<<"dept:"<<std[temp[i]].getDept()<<endl;
+                    if(i!=temp.size()-1)
+                        cout<<endl;
+                }
+                cout<<endl;
             }
             else{
                   break;

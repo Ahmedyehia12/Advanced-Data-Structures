@@ -61,15 +61,17 @@ void BST<T>::insert(T data) {
         }
     }
 }
-
-
-
 template<class T>
-void BST<T>::print(BSTNode<T> *p) {
+vector<T> BST<T>::getSorted(vector<T> &v){
+    print(root,v);
+    return v;
+}
+template<class T>
+void BST<T>::print(BSTNode<T> *p, vector<T>& v) {
     if(p!= nullptr){
-        print(p->getLeft());
-        cout << p->getKey() << " ";
-        print(p->getRight());
+        print(p->getLeft(),v);
+        v.push_back(p->getKey());
+        print(p->getRight(),v);
     }
 }
 
