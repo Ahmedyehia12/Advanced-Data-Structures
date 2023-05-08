@@ -12,4 +12,5 @@ int main(){
     h.insert(50);
     h.insert(60);
     h.print();
+
 }
