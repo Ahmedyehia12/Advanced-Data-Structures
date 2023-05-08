@@ -20,26 +20,36 @@ Student operator >> (istream &in , Student &s){
     s.setDept(dept);
     return s;
 }
+
+void readData(vector<Student> &students){
+    ifstream file("input.txt");
+    int n;
+    file >> n;
+    for(int i = 0 ; i < n ; i++){
+        string name,dept;
+        int id;
+        double gpa;
+        file >>id;
+        file.ignore();
+        getline(file,name);
+        file >> gpa >> dept;
+        students.push_back(Student(id,name,gpa,dept));
+    }
+    file.close();
+}
 int main(){
+    vector<Student>students;
+    readData(students);
+
     BST<int> bst;
     AVL<int> avl;
     minHeap<int>minHeap(100);
     maxHeap<int>maxHeap(100);
     map<string , int>dep;
     map<int , Student>std;
-    ifstream file("input.txt");
-    string line;
-    if (file.is_open()) {
-        while (getline(file, line)) {
-            cout << line << '\n';
-        }
-        file.close();
-    }
-    else{
-        cout<<"file not found"<<endl;
-    }
+
     while(true){
-   cout<<"choose data structure :"<<endl;
+   cout<<"Choose Data Structure: "<<endl;
    cout<<"1-BST"<<endl;
    cout<<"2-AVL"<<endl;
    cout<<"3-Min Heap"<<endl;
@@ -50,32 +60,32 @@ int main(){
    if(choice == 1){
       while(true){
       cout<<"1-Insert Student"<<endl;
-      cout<<"2-remove Student"<<endl;
+      cout<<"2-Remove Student"<<endl;
       cout<<"3-Search Student"<<endl;
       cout<<"4-Print sorted BST"<<endl;
-      cout<<"5-return to main menu"<<endl;
+      cout<<"5-Return to Main Menu"<<endl;
           int c;
           cin>>c;
           if(c==1){
               Student s;
-              cout<<"enter student id:"<<endl;
+              cout<<"Enter Student ID:"<<endl;
               int id;
               cin>>id;
               while(std.find(id)!=std.end()){
-                  cout<<"id already exists"<<endl;
-                  cout<<"enter student id:"<<endl;
+                  cout<<"ID already exists!"<<endl;
+                  cout<<"Enter Student ID:"<<endl;
                   cin>>id;
                 }
               s.setId(id);
-              cout<<"enter student name:"<<endl;
+              cout<<"Enter student name: "<<endl;
                 string name;
                 cin>>name;
                 s.setName(name);
-                cout<<"enter student gpa:"<<endl;
+                cout<<"Enter student gpa:"<<endl;
                 double gpa;
                 cin>>gpa;
                 s.setGpa(gpa);
-                cout<<"enter student dept:"<<endl;
+                cout<<"Enter student department:"<<endl;
                 string dept;
                 cin>>dept;
                 s.setDept(dept);
@@ -84,7 +94,7 @@ int main(){
                 bst.insert(id);
           }
           else if(c==2){
-              cout<<"enter student id:"<<endl;
+              cout<<"Enter student ID:"<<endl;
               int id;
               cin>>id;
               Student s = std[id];
@@ -93,18 +103,18 @@ int main(){
               bst.deleteNode(id);
           }
           else if(c==3){
-                cout<<"enter student id:"<<endl;
+                cout<<"Enter student ID:"<<endl;
                 int id;
                 cin>>id;
                 if(bst.search(id)){
-                    cout<<"student found"<<endl;
-                    cout<<"id:"<<id<<endl;
-                    cout<<"name:"<<std[id].getName()<<endl;
-                    cout<<"gpa:"<<std[id].getGpa()<<endl;
-                    cout<<"dept:"<<std[id].getDept()<<endl;
+                    cout<<"Student found"<<endl;
+                    cout<<"ID:"<<id<<endl;
+                    cout<<"Name:"<<std[id].getName()<<endl;
+                    cout<<"GPA:"<<std[id].getGpa()<<endl;
+                    cout<<"Department:"<<std[id].getDept()<<endl;
                 }
                 else{
-                    cout<<"student not found"<<endl;
+                    cout<<"Student not found!"<<endl;
                 }
             }
             else if(c==4){
