@@ -25,6 +25,7 @@ void readData(vector<Student> &students){
     }
     file.close();
 }
+
 int main(){
     BST<int> bst;
     AVL<int> avl;
