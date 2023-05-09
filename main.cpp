@@ -122,7 +122,7 @@ int main(){
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"Number of students in each department:"<<endl;
+                cout<<"Number of students in each department in BST:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
@@ -208,7 +208,7 @@ int main(){
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department:"<<endl;
+                cout<<"number of students in each department in AVL:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
@@ -265,7 +265,7 @@ int main(){
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department:"<<endl;
+                cout<<"number of students in each department in min heap:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
@@ -323,7 +323,7 @@ int main(){
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department:"<<endl;
+                cout<<"number of students in each department in max heap:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
