@@ -70,42 +70,45 @@ int main(){
                   cin>>id;
                 }
               s.setId(id);
-              cout<<"Enter student name: "<<endl;
+              cout<<"Enter Student Name: "<<endl;
                 string name;
                 cin>>name;
                 s.setName(name);
-                cout<<"Enter student gpa:"<<endl;
+                cout<<"Enter Student GPA:"<<endl;
                 double gpa;
                 cin>>gpa;
                 s.setGpa(gpa);
-                cout<<"Enter student department:"<<endl;
+                cout<<"Enter Student Department:"<<endl;
                 string dept;
                 cin>>dept;
                 s.setDept(dept);
                 std[id] = s;
                 bst.insert(id);
+                cout<<"\nStudent inserted successfully !!\n"<<endl;
           }
           else if(c==2){
-              cout<<"Enter student ID:"<<endl;
+              cout<<"Enter Student ID:"<<endl;
               int id;
               cin>>id;
               Student s = std[id];
               std.erase(id);
               bst.deleteNode(id);
+                cout<<"\nStudent deleted successfully !!\n"<<endl;
           }
           else if(c==3){
-                cout<<"Enter student ID:"<<endl;
+                cout<<"Enter Student ID:"<<endl;
                 int id;
                 cin>>id;
                 if(bst.search(id)){
-                    cout<<"Student found"<<endl;
+                    cout<<"\nStudent found"<<endl;
                     cout<<"ID:"<<id<<endl;
                     cout<<"Name:"<<std[id].getName()<<endl;
                     cout<<"GPA:"<<std[id].getGpa()<<endl;
                     cout<<"Department:"<<std[id].getDept()<<endl;
+                    cout<<endl;
                 }
                 else{
-                    cout<<"Student not found!"<<endl;
+                    cout<<"\nStudent not found!\n"<<endl;
                 }
             }
             else if(c==4){
@@ -137,61 +140,62 @@ int main(){
    else if(choice ==2){
        while(true){
        cout<<"1-Insert Student"<<endl;
-       cout<<"2-remove Student"<<endl;
+       cout<<"2-Remove Student"<<endl;
        cout<<"3-Search Student"<<endl;
-       cout<<"4-Print sorted AVL"<<endl;
-       cout<<"5-return to main menu"<<endl;
+       cout<<"4-Print Sorted AVL"<<endl;
+       cout<<"5-Return to Main Menu"<<endl;
        int c;
        cin>>c;
        if(c==1){
            Student s;
-           cout<<"enter student id:"<<endl;
+           cout<<"Enter Student ID:"<<endl;
               int id;
               cin>>id;
               while(avl.search(id)){
-                  cout<<"id already exists"<<endl;
-                  cout<<"enter student id:"<<endl;
+                  cout<<"ID already exists!"<<endl;
+                  cout<<"Enter Student ID:"<<endl;
                   cin>>id;
               }
               s.setId(id);
-              cout<<"enter student name:"<<endl;
+              cout<<"Enter Student Name:"<<endl;
               string name;
               cin>>name;
               s.setName(name);
-              cout<<"enter student gpa:"<<endl;
+              cout<<"Enter Student GPA:"<<endl;
               double gpa;
               cin>>gpa;
               s.setGpa(gpa);
-              cout<<"enter student dept:"<<endl;
+              cout<<"Enter Student Department:"<<endl;
               string dept;
               cin>>dept;
               s.setDept(dept);
               std[id] = s;
               avl.insert(id);
-              cout<<"student inserted successfully"<<endl;
+              cout<<"\nStudent inserted successfully !!\n"<<endl;
        }
        else if(c==2){
-              cout<<"enter student id:"<<endl;
+              cout<<"Enter Student ID:"<<endl;
                   int id;
                   cin>>id;
                   Student s = std[id];
                   std.erase(id);
                   avl.erase(id);
-                  cout<<"student deleted successfully"<<endl;
+                  cout<<"\nStudent deleted successfully \n"<<endl;
          }
          else if(c==3){
-              cout<<"enter student id:"<<endl;
+              cout<<"\nEnter Student ID:"<<endl;
                  int id;
                  cin>>id;
                  if(avl.search(id)){
-                      cout<<"student found"<<endl;
-                      cout<<"id:"<<id<<endl;
-                      cout<<"name:"<<std[id].getName()<<endl;
-                      cout<<"gpa:"<<std[id].getGpa()<<endl;
-                      cout<<"dept:"<<std[id].getDept()<<endl;
+                      cout<<"Student Found !"<<endl;
+                      cout<<"ID:"<<id<<endl;
+                      cout<<"Name:"<<std[id].getName()<<endl;
+                      cout<<"GPA:"<<std[id].getGpa()<<endl;
+                      cout<<"Department:"<<std[id].getDept()<<endl;
+                        cout<<endl;
                  }
                  else{
-                      cout<<"student not found"<<endl;
+                      cout<<"\nStudent not found !\n"<<endl;
                  }
          }
          else if(c==4){
@@ -200,15 +204,15 @@ int main(){
              map<string , int>dep;
                 for(int i = 0 ; i < sorted.size() ; i++){
                     dep[std[sorted[i]].getDept()]++;
-                    cout<<"id:"<<sorted[i]<<endl;
-                    cout<<"name:"<<std[sorted[i]].getName()<<endl;
-                    cout<<"gpa:"<<std[sorted[i]].getGpa()<<endl;
-                    cout<<"dept:"<<std[sorted[i]].getDept()<<endl;
+                    cout<<"ID:"<<sorted[i]<<endl;
+                    cout<<"Name:"<<std[sorted[i]].getName()<<endl;
+                    cout<<"GPA:"<<std[sorted[i]].getGpa()<<endl;
+                    cout<<"Department:"<<std[sorted[i]].getDept()<<endl;
                     if(i!=sorted.size()-1)
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department in AVL:"<<endl;
+                cout<<"Number of Students in each department in AVL:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
@@ -220,52 +224,52 @@ int main(){
    }
    else if(choice == 3){
        while(true){
-       cout<<"1 -add student"<<endl;
-       cout<<"2 -print sorted min heap"<<endl;
-       cout<<"3 -return to the main menu"<<endl;
+       cout<<"1-Add Student"<<endl;
+       cout<<"2-Print sorted Min Heap"<<endl;
+       cout<<"3-Return to the Main Menu"<<endl;
        int c;
        cin>>c;
        if(c==1){
               Student s;
-              cout<<"enter student id:"<<endl;
+              cout<<"Enter Student ID:"<<endl;
                   int id;
                   cin>>id;
                   while(minHeap.search(id)){
-                      cout<<"id already exists"<<endl;
-                      cout<<"enter student id:"<<endl;
+                      cout<<"ID already exists !"<<endl;
+                      cout<<"Enter Student ID:"<<endl;
                       cin>>id;
                     }
                   s.setId(id);
-                  cout<<"enter student name:"<<endl;
+                  cout<<"Enter Student Name:"<<endl;
                   string name;
                   cin>>name;
                   s.setName(name);
-                  cout<<"enter student gpa:"<<endl;
+                  cout<<"Enter Student GPA:"<<endl;
                   double gpa;
                   cin>>gpa;
                   s.setGpa(gpa);
-                  cout<<"enter student dept:"<<endl;
+                  cout<<"Enter Student Department:"<<endl;
                   string dept;
                   cin>>dept;
                   s.setDept(dept);
                   std[id] = s;
                   minHeap.insertKey(id);
-                  cout<<"student inserted successfully"<<endl;
+                  cout<<"\nStudent inserted successfully !!\n"<<endl;
          }
          else if(c==2){
              vector<int>temp = minHeap.heapSort();
              map<string , int>dep;
                 for(int i = 0 ; i < temp.size() ; i++){
                     dep[std[temp[i]].getDept()]++;
-                    cout<<"id:"<<temp[i]<<endl;
-                    cout<<"name:"<<std[temp[i]].getName()<<endl;
-                    cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
-                    cout<<"dept:"<<std[temp[i]].getDept()<<endl;
+                    cout<<"ID:"<<temp[i]<<endl;
+                    cout<<"Name:"<<std[temp[i]].getName()<<endl;
+                    cout<<"GPA:"<<std[temp[i]].getGpa()<<endl;
+                    cout<<"Department:"<<std[temp[i]].getDept()<<endl;
                     if(i!=temp.size()-1)
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department in min heap:"<<endl;
+                cout<<"Number of Students in each department in Min Heap:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
@@ -278,52 +282,52 @@ int main(){
    }
    else if(choice == 4){
        while(true){
-         cout<<"1 - add student"<<endl;
-         cout<<"2 - print sorted max heap by gpa"<<endl;
-         cout<<"3 - return to main menu"<<endl;
+         cout<<"1-Add Student"<<endl;
+         cout<<"2-Print sorted Max Heap"<<endl;
+         cout<<"3-Return to Main Menu"<<endl;
          int c;
          cin>>c;
          if(c==1){
                   Student s;
-                  cout<<"enter student id:"<<endl;
+                  cout<<"Enter Student ID:"<<endl;
                     int id;
                     cin>>id;
                     while(maxHeap.search(id)){
-                        cout<<"id already exists"<<endl;
-                        cout<<"enter student id:"<<endl;
+                        cout<<"ID already exists !"<<endl;
+                        cout<<"Enter Student ID:"<<endl;
                         cin>>id;
                     }
                     s.setId(id);
-                    cout<<"enter student name:"<<endl;
+                    cout<<"Enter Student Name:"<<endl;
                     string name;
                     cin>>name;
                     s.setName(name);
-                    cout<<"enter student gpa:"<<endl;
+                    cout<<"Enter Student GPA:"<<endl;
                     double gpa;
                     cin>>gpa;
                     s.setGpa(gpa);
-                    cout<<"enter student dept:"<<endl;
+                    cout<<"Enter Student Department:"<<endl;
                     string dept;
                     cin>>dept;
                     s.setDept(dept);
                     std[id] = s;
                     maxHeap.insert(id);
-                    cout<<"student inserted successfully"<<endl;
+                    cout<<"\nStudent Inserted Successfully !! \n"<<endl;
             }
             else if(c==2){
                 vector<int>temp = maxHeap.heapSort();
                 map<string , int>dep;
                 for(int i = 0 ; i < temp.size() ; i++){
                     dep[std[temp[i]].getDept()]++;
-                    cout<<"id:"<<temp[i]<<endl;
-                    cout<<"name:"<<std[temp[i]].getName()<<endl;
-                    cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
-                    cout<<"dept:"<<std[temp[i]].getDept()<<endl;
+                    cout<<"ID:"<<temp[i]<<endl;
+                    cout<<"Name:"<<std[temp[i]].getName()<<endl;
+                    cout<<"GPA:"<<std[temp[i]].getGpa()<<endl;
+                    cout<<"Department:"<<std[temp[i]].getDept()<<endl;
                     if(i!=temp.size()-1)
                         cout<<endl;
                 }
                 cout<<endl;
-                cout<<"number of students in each department in max heap:"<<endl;
+                cout<<"Number of Students in each department in Max Heap:"<<endl;
                 for(auto it = dep.begin() ; it != dep.end() ; it++){
                     cout<<it->first<<" "<<it->second<<endl;
                 }
