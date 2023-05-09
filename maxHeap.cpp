@@ -95,7 +95,14 @@ void maxHeap<T>::print_sorted() {
     cout<<endl;
     delete [] cpy;
 }
-
+template<class T>
+bool maxHeap<T>::search(T val) {
+    for(int i = 0; i < size; i++){
+        if(arr[i] == val)
+            return true;
+    }
+    return false;
+}
 template<class T>
 vector<T> maxHeap<T>::heapSort() {
     vector<T> sorted;

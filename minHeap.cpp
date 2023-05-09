@@ -70,6 +70,15 @@ vector<T> minHeap<T>::heapSort() {
 }
 
 template<class T>
+bool minHeap<T>::search(T val) {
+    for(int i = 0; i < size; i++){
+        if(arr[i] == val){
+            return true;
+        }
+    }
+    return false;
+}
+template<class T>
 void minHeap<T>::MinHeapify(int i, int n) {
     int l = left(i);
     int r = right(i);

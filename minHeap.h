@@ -23,6 +23,7 @@ public:
     int getCapacity();
     void printSorted();
     vector<T> heapSort();
+    bool search(T val);
 
     T& operator[](int i){
         if(i >= size){

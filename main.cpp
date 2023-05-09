@@ -30,14 +30,11 @@ int main(){
     AVL<int> avl;
     minHeap<int>minHeap(100);
     maxHeap<int>maxHeap(100);
-    map<string , int>dep;
     map<int , Student>std;
     vector<Student>students;
     readData(students);
     for(int i = 0 ; i < students.size() ; i++){
         Student s = students[i];
-        if(std.find(s.getId()) == std.end())
-            dep[s.getDept()]++;
         std[s.getId()] = s;
         bst.insert(s.getId());
         avl.insert(s.getId());
@@ -67,7 +64,7 @@ int main(){
               cout<<"Enter Student ID:"<<endl;
               int id;
               cin>>id;
-              while(std.find(id)!=std.end()){
+              while(bst.search(id)){
                   cout<<"ID already exists!"<<endl;
                   cout<<"Enter Student ID:"<<endl;
                   cin>>id;
@@ -85,7 +82,6 @@ int main(){
                 string dept;
                 cin>>dept;
                 s.setDept(dept);
-                dep[dept]++;
                 std[id] = s;
                 bst.insert(id);
           }
@@ -94,7 +90,6 @@ int main(){
               int id;
               cin>>id;
               Student s = std[id];
-              dep[s.getDept()]--;
               std.erase(id);
               bst.deleteNode(id);
           }
@@ -116,13 +111,20 @@ int main(){
             else if(c==4){
                 vector<int>temp;
                 vector<int>sorted  = bst.getSorted(temp);
+                map<string , int>dep;
                 for(int i = 0 ; i < sorted.size() ; i++){
+                    dep[std[sorted[i]].getDept()]++;
                     cout<<"ID:"<<sorted[i]<<endl;
                     cout<<"Name:"<<std[sorted[i]].getName()<<endl;
                     cout<<"GPA:"<<std[sorted[i]].getGpa()<<endl;
                     cout<<"Department:"<<std[sorted[i]].getDept()<<endl;
                     if(i!=sorted.size()-1)
                         cout<<endl;
+                }
+                cout<<endl;
+                cout<<"Number of students in each department:"<<endl;
+                for(auto it = dep.begin() ; it != dep.end() ; it++){
+                    cout<<it->first<<" "<<it->second<<endl;
                 }
                 cout<<endl;
             }
@@ -146,7 +148,7 @@ int main(){
            cout<<"enter student id:"<<endl;
               int id;
               cin>>id;
-              while(std.find(id)!=std.end()){
+              while(avl.search(id)){
                   cout<<"id already exists"<<endl;
                   cout<<"enter student id:"<<endl;
                   cin>>id;
@@ -164,7 +166,6 @@ int main(){
               string dept;
               cin>>dept;
               s.setDept(dept);
-              dep[dept]++;
               std[id] = s;
               avl.insert(id);
               cout<<"student inserted successfully"<<endl;
@@ -174,7 +175,6 @@ int main(){
                   int id;
                   cin>>id;
                   Student s = std[id];
-                  dep[s.getDept()]--;
                   std.erase(id);
                   avl.erase(id);
                   cout<<"student deleted successfully"<<endl;
@@ -197,13 +197,20 @@ int main(){
          else if(c==4){
              vector<int>temp;
              vector<int>sorted = avl.getSorted(temp);
+             map<string , int>dep;
                 for(int i = 0 ; i < sorted.size() ; i++){
+                    dep[std[sorted[i]].getDept()]++;
                     cout<<"id:"<<sorted[i]<<endl;
                     cout<<"name:"<<std[sorted[i]].getName()<<endl;
                     cout<<"gpa:"<<std[sorted[i]].getGpa()<<endl;
                     cout<<"dept:"<<std[sorted[i]].getDept()<<endl;
                     if(i!=sorted.size()-1)
                         cout<<endl;
+                }
+                cout<<endl;
+                cout<<"number of students in each department:"<<endl;
+                for(auto it = dep.begin() ; it != dep.end() ; it++){
+                    cout<<it->first<<" "<<it->second<<endl;
                 }
                 cout<<endl;
          }
@@ -223,7 +230,7 @@ int main(){
               cout<<"enter student id:"<<endl;
                   int id;
                   cin>>id;
-                  while(std.find(id)!=std.end()){
+                  while(minHeap.search(id)){
                       cout<<"id already exists"<<endl;
                       cout<<"enter student id:"<<endl;
                       cin>>id;
@@ -241,20 +248,26 @@ int main(){
                   string dept;
                   cin>>dept;
                   s.setDept(dept);
-                  dep[dept]++;
                   std[id] = s;
                   minHeap.insertKey(id);
                   cout<<"student inserted successfully"<<endl;
          }
          else if(c==2){
              vector<int>temp = minHeap.heapSort();
+             map<string , int>dep;
                 for(int i = 0 ; i < temp.size() ; i++){
+                    dep[std[temp[i]].getDept()]++;
                     cout<<"id:"<<temp[i]<<endl;
                     cout<<"name:"<<std[temp[i]].getName()<<endl;
                     cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
                     cout<<"dept:"<<std[temp[i]].getDept()<<endl;
                     if(i!=temp.size()-1)
                         cout<<endl;
+                }
+                cout<<endl;
+                cout<<"number of students in each department:"<<endl;
+                for(auto it = dep.begin() ; it != dep.end() ; it++){
+                    cout<<it->first<<" "<<it->second<<endl;
                 }
                 cout<<endl;
          }
@@ -275,6 +288,11 @@ int main(){
                   cout<<"enter student id:"<<endl;
                     int id;
                     cin>>id;
+                    while(maxHeap.search(id)){
+                        cout<<"id already exists"<<endl;
+                        cout<<"enter student id:"<<endl;
+                        cin>>id;
+                    }
                     s.setId(id);
                     cout<<"enter student name:"<<endl;
                     string name;
@@ -288,20 +306,26 @@ int main(){
                     string dept;
                     cin>>dept;
                     s.setDept(dept);
-                    dep[dept]++;
                     std[id] = s;
                     maxHeap.insert(id);
                     cout<<"student inserted successfully"<<endl;
             }
             else if(c==2){
                 vector<int>temp = maxHeap.heapSort();
+                map<string , int>dep;
                 for(int i = 0 ; i < temp.size() ; i++){
+                    dep[std[temp[i]].getDept()]++;
                     cout<<"id:"<<temp[i]<<endl;
                     cout<<"name:"<<std[temp[i]].getName()<<endl;
                     cout<<"gpa:"<<std[temp[i]].getGpa()<<endl;
                     cout<<"dept:"<<std[temp[i]].getDept()<<endl;
                     if(i!=temp.size()-1)
                         cout<<endl;
+                }
+                cout<<endl;
+                cout<<"number of students in each department:"<<endl;
+                for(auto it = dep.begin() ; it != dep.end() ; it++){
+                    cout<<it->first<<" "<<it->second<<endl;
                 }
                 cout<<endl;
             }
@@ -313,10 +337,6 @@ int main(){
    else{
        break;
    }
-    }
-    cout<<"departments:"<<endl;
-    for(auto it = dep.begin();it!=dep.end();it++){
-        cout<<it->first<<" "<<it->second<<endl;
     }
 
 }

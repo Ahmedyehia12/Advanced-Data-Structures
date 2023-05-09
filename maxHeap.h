@@ -40,6 +40,7 @@ public:
     void print();
     T get_max();
     void extract_max();
+    bool search(T val);
     vector<T> heapSort();
     T& operator[](int i){
         if(i >= size || i < 0)
@@ -49,6 +50,7 @@ public:
 
 
 };
+
 
 
 
