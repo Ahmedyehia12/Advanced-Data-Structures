@@ -13,7 +13,6 @@ void readData(vector<Student> &students){
     ifstream file("input.txt");
     int n;
     file >> n;
-    students.resize(n);
     for(int i = 0 ; i < n ; i++){
         string name,dept;
         int id;
@@ -35,7 +34,7 @@ int main(){
     map<int , Student>std;
     vector<Student>students;
     students.clear();
-    //readData(students);
+    readData(students);
     for(int i = 0 ; i < students.size() ; i++){
         Student s = students[i];
         std[s.getId()] = s;
@@ -93,6 +92,10 @@ int main(){
               cout<<"Enter Student ID:"<<endl;
               int id;
               cin>>id;
+              if(!bst.search(id)){
+                  cout<<"\nStudent not found!\n"<<endl;
+                  continue;
+              }
               std.erase(id);
               bst.deleteNode(id);
                 cout<<"\nStudent deleted successfully !!\n"<<endl;
@@ -179,6 +182,10 @@ int main(){
               cout<<"Enter Student ID:"<<endl;
                   int id;
                   cin>>id;
+                    if(!avl.search(id)){
+                        cout<<"\nStudent not found!\n"<<endl;
+                        continue;
+                    }
                   Student s = std[id];
                   std.erase(id);
                   avl.erase(id);
