@@ -1,5 +1,7 @@
 #ifndef DS_ASSIGN3_STUDENT_H
 #define DS_ASSIGN3_STUDENT_H
+#include<iostream>;
+using namespace std;
 
 class Student {
 private:

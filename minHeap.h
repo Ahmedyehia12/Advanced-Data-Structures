@@ -1,11 +1,11 @@
 #ifndef DS_ASSIGN3_MINHEAP_H
 #define DS_ASSIGN3_MINHEAP_H
 #include <bits/stdc++.h>
+#include "Student.h"
 using namespace std;
-template <class T>
 class minHeap {
 private:
-    T *arr;
+    Student *arr;
     int capacity;
     int size;
 public:
@@ -13,19 +13,18 @@ public:
     int parent(int i);
     int left(int i);
     int right(int i);
-    int getMin();
+    Student getMin();
     void extractMin();
-    void insertKey(T k);
+    void insertKey(Student k);
     void MinHeapify(int i , int n);
-    void buildMinHeap(T *a, int n);
+    void buildMinHeap(Student *a, int n);
     void bottomUpHeapify(int i);
     int getSize();
     int getCapacity();
-    void printSorted();
-    vector<T> heapSort();
-    bool search(T val);
+    vector<Student> heapSort();
+    bool search(int id);
 
-    T& operator[](int i){
+    Student& operator[](int i){
         if(i >= size){
             cout<<"Index out of bounds"<<endl;
             exit(1);

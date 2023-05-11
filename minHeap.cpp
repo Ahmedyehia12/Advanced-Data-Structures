@@ -1,42 +1,41 @@
 #include "minHeap.h"
 using namespace std;
-template<class T>
-minHeap<T>::minHeap(int capacity) {
+
+minHeap::minHeap(int capacity) {
     this->capacity = capacity;
     this->size = 0;
-    this->arr = new T[capacity];
+    this->arr = new Student[capacity];
 }
-template<class T>
-int minHeap<T>::parent(int i) {
+
+int minHeap::parent(int i) {
     if((i-1)/2 <0){
         return -1;
     }
     return (i - 1) / 2;
 }
-template<class T>
-int minHeap<T>::left(int i) {
+int minHeap::left(int i) {
     if(2*i+1 >= size){
         return -1;
     }
     return 2 * i + 1;
 }
-template<class T>
-int minHeap<T>::right(int i) {
+
+int minHeap::right(int i) {
     if(2*i+2 >= size){
         return -1;
     }
     return 2 * i + 2;
 }
-template<class T>
-int minHeap<T>::getMin() {
+
+Student minHeap::getMin() {
     if(size == 0){
         cout<<"Heap is empty"<<endl;
-        return -1;
+        exit(1);
     }
     return arr[0];
 }
-template<class T>
-void minHeap<T>::extractMin() {
+
+void minHeap::extractMin() {
     if(size == 0){
         cout<<"Heap is empty"<<endl;
         return;
@@ -49,14 +48,13 @@ void minHeap<T>::extractMin() {
     size--;
     MinHeapify(0,size);
 }
-template<class T>
-vector<T> minHeap<T>::heapSort() {
-    T *temp = new T[size];
+vector<Student> minHeap::heapSort() {
+    Student *temp = new Student[size];
     int sz = size;
     for(int i = 0; i < sz; i++){
         temp[i] = arr[i];
     }
-    vector<T>sorted;
+    vector<Student>sorted;
     int n = size;
     for (int i = 0; i < n; ++i) {
         sorted.push_back(getMin());
@@ -69,24 +67,22 @@ vector<T> minHeap<T>::heapSort() {
     return sorted;
 }
 
-template<class T>
-bool minHeap<T>::search(T val) {
+bool minHeap::search(int val) {
     for(int i = 0; i < size; i++){
-        if(arr[i] == val){
+        if(arr[i].getId() == val){
             return true;
         }
     }
     return false;
 }
-template<class T>
-void minHeap<T>::MinHeapify(int i, int n) {
+void minHeap::MinHeapify(int i, int n) {
     int l = left(i);
     int r = right(i);
     int smallest = i;
-    if(l != -1 && arr[l] < arr[i]){
+    if(l != -1 && arr[l].getGpa() < arr[i].getGpa()){
         smallest = l;
     }
-    if(r != -1 && arr[r] < arr[smallest]){
+    if(r != -1 && arr[r].getGpa() < arr[smallest].getGpa()){
         smallest = r;
     }
     if(smallest != i){
@@ -94,8 +90,7 @@ void minHeap<T>::MinHeapify(int i, int n) {
         MinHeapify(smallest,n);
     }
 }
-template<class T>
-void minHeap<T>::insertKey(T k) {
+void minHeap::insertKey(Student k) {
     if(size == capacity){
         cout<<"Heap is full"<<endl;
         return;
@@ -104,19 +99,17 @@ void minHeap<T>::insertKey(T k) {
     arr[size-1] = k;
     bottomUpHeapify(size-1);
 }
-template<class T>
-void minHeap<T>::bottomUpHeapify(int i) {
+void minHeap::bottomUpHeapify(int i) {
     if(i == 0){
         return;
     }
     int p = parent(i);
-    if(arr[p] > arr[i]){
+    if(arr[p].getGpa() > arr[i].getGpa()){
         swap(arr[p],arr[i]);
         bottomUpHeapify(p);
     }
 }
-template<class T>
-void minHeap<T>::buildMinHeap(T *a, int n) {
+void minHeap::buildMinHeap(Student *a, int n) {
     if(n > capacity){
         cout<<"Heap capacity is less than array size"<<endl;
         return;
@@ -129,34 +122,13 @@ void minHeap<T>::buildMinHeap(T *a, int n) {
         MinHeapify(i,n);
     }
 }
-template<class T>
-int minHeap<T>::getSize() {
+int minHeap::getSize() {
     return size;
 }
-template<class T>
-int minHeap<T>::getCapacity() {
+
+int minHeap::getCapacity() {
     return capacity;
 }
-template<class T>
-void minHeap<T>::printSorted() {
-    T *temp = new T[size];
-    T* cpy = new T[size];
-    for(int i = 0; i < size; i++){
-        cpy[i] = arr[i];
-    }
-    int n = size;
-    for(int i = 0; i < n; i++){
-        temp[i] = arr[0];
-        extractMin();
-    }
-    for(int i = 0; i < n; i++){
-        cout<<temp[i]<<" ";
-    }
-    size = n;
-    for(int i = 0; i < n; i++){
-        arr[i] = cpy[i];
-    }
-    delete[] temp;
-    delete[] cpy;}
+
 
 

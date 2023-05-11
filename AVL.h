@@ -1,16 +1,16 @@
 #ifndef DS_ASSIGN3_AVL_H
 #define DS_ASSIGN3_AVL_H
 #include<bits/stdc++.h>
+#include "Student.h"
 using namespace std;
-template <class T>
 struct AVL_node{
-    T key;
+    Student key;
     AVL_node* parent;
     AVL_node* left;
     AVL_node* right;
     int bf;
     int height;
-    AVL_node(int data){
+    AVL_node(Student& data){
         parent = nullptr;
         left = nullptr;
         right = nullptr;
@@ -19,30 +19,28 @@ struct AVL_node{
         height = 1;
     }
 };
-template <class T>
 class AVL {
 private:
-    AVL_node<T> * root;
-    vector<T>v;
+    AVL_node * root;
 public:
     AVL(){
         root = nullptr;
     }
-    AVL_node<T>* get_root(){
+    AVL_node* get_root(){
         return root;
     }
     int max(int a , int b){
         return (a > b) ? a : b;
     }
-    int get_height(AVL_node<T>* node);
-    int getBalanceFactor(AVL_node<T>* node);
-    void right_rotate(AVL_node<T>* node);
-    void left_rotate(AVL_node<T>* node);
-    void insert(T key);
-    void erase(T key);
-    bool search(T key);
-    vector<T> getSorted(vector<T>&v);
-    void inorder(AVL_node<T>* node , vector<T>&v);
+    int get_height(AVL_node* node);
+    int getBalanceFactor(AVL_node* node);
+    void right_rotate(AVL_node* node);
+    void left_rotate(AVL_node* node);
+    void insert(Student key);
+    void erase(int key);
+    bool search(int key);
+    vector<Student> getSorted();
+    void inorder(AVL_node* node , vector<Student>&v);
 
 };
 

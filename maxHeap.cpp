@@ -2,15 +2,14 @@
 #include<queue>
 #include<iostream>
 using namespace std;
-template<class T>
-void maxHeap<T>::max_heapify(int i , int sz) {
+void maxHeap::max_heapify(int i , int sz) {
     int left = get_left_child(i);
     int right = get_right_child(i);
     int largest = i;
-    if(left < sz && left>=0 && arr[left] > arr[i]){
+    if(left < sz && left>=0 && arr[left].getGpa() > arr[i].getGpa()){
         largest = left;
     }
-    if(right < sz && right>=0&& arr[right] > arr[largest]){
+    if(right < sz && right>=0&& arr[right].getGpa() > arr[largest].getGpa()){
         largest = right;
     }
     if(largest != i){
@@ -18,19 +17,17 @@ void maxHeap<T>::max_heapify(int i , int sz) {
         max_heapify(largest , sz);
     }
 }
-template<class T>
-void maxHeap<T>::bottom_up_heapify(int i) {
+void maxHeap::bottom_up_heapify(int i) {
     int parent = (i - 1) / 2;
     if(parent < 0)
         return;
-    if (arr[i] > arr[parent]) {
+    if (arr[i].getGpa() > arr[parent].getGpa()) {
         swap(arr[i], arr[parent]);
         bottom_up_heapify(parent);
     }
 
 }
-template<class T>
-void maxHeap<T>::insert(T val) {
+void maxHeap::insert(Student& val) {
     if(size == capacity){
         cout<<"Heap is full"<<endl;
         return;
@@ -39,16 +36,15 @@ void maxHeap<T>::insert(T val) {
     bottom_up_heapify(size);
     size++;
 }
-template<class T>
-T maxHeap<T>::get_max() {
+
+Student maxHeap::get_max() {
     if(size == 0){
         cout<<"Heap is empty"<<endl;
-        return -1;
+        exit(1);
     }
     return arr[0];
 }
-template<class T>
-void maxHeap<T>::extract_max() {
+void maxHeap::extract_max() {
     if(this->size == 0){
         cout<<"Heap is empty"<<endl;
         return;
@@ -57,8 +53,7 @@ void maxHeap<T>::extract_max() {
     size--;
     max_heapify(0,size);
 }
-template<class T>
-void maxHeap<T>::build_max_heap(T *a, int n) {
+void maxHeap::build_max_heap(Student *a, int n) {
     if(n > capacity){
         cout<<"Heap capacity is less than array size"<<endl;
         return;
@@ -71,11 +66,10 @@ void maxHeap<T>::build_max_heap(T *a, int n) {
         max_heapify(i,n);
     }
 }
-template<class T>
-void maxHeap<T>::print_sorted() {
-    T* cpy = new T[size];
+void maxHeap::print_sorted() {
+    Student* cpy = new Student[size];
     int sz = size;
-    T* temp = new T[size];
+    Student* temp = new Student[size];
     for(int i = 0 ; i < sz ; i++){
         temp[i] = arr[i];
     }
@@ -90,23 +84,25 @@ void maxHeap<T>::print_sorted() {
     }
     delete [] temp;
     for(int i = sz-1 ; i >=0 ; i--){
-        cout<<cpy[i]<<' ';
+        cout<<cpy[i].getGpa()<<" ";
+        cout<<cpy[i].getId()<<" ";
+        cout<<cpy[i].getName()<<endl;
+        cout<<cpy[i].getDept()<<endl;
+        cout<<endl;
     }
     cout<<endl;
     delete [] cpy;
 }
-template<class T>
-bool maxHeap<T>::search(T val) {
+bool maxHeap::search(int val) {
     for(int i = 0; i < size; i++){
-        if(arr[i] == val)
+        if(arr[i].getId() == val)
             return true;
     }
     return false;
 }
-template<class T>
-vector<T> maxHeap<T>::heapSort() {
-    vector<T> sorted;
-    T *cpy = new T[size];
+vector<Student> maxHeap::heapSort() {
+    vector<Student> sorted;
+    Student *cpy = new Student[size];
     for(int i = 0 ; i < size ; i++){
         cpy[i] = arr[i];
     }
@@ -120,13 +116,11 @@ vector<T> maxHeap<T>::heapSort() {
         arr[i] = cpy[i];
     }
     delete [] cpy;
-    reverse(sorted.begin(),sorted.end());
     return sorted;
 }
-template<class T>
-void maxHeap<T>::print() {
+void maxHeap::print() {
     for(int i = 0 ; i < size ; i++){
-        cout<<arr[i]<<' ';
+        cout<<arr[i].getGpa()<<" ";
     }
     cout<<endl;
 

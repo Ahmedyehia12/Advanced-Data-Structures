@@ -1,33 +1,23 @@
-//Author : Mohanad Hisham
-
 #include "BST.h"
 #include <iostream>
 using namespace std;
-
-
-
-template<class T>
-BST<T>::BST() {
+BST::BST() {
     root= nullptr;
 }
-
-template<class T>
-void BST<T>::clear() {
+void BST::clear() {
     root = nullptr;
 }
 
-template<class T>
-bool BST<T>::isEmpty() {
+bool BST::isEmpty() {
     return root== nullptr;
 }
 
-template<class T>
-bool BST<T>::search(T el) {
-    BSTNode<T>* p=root;
+bool BST::search(int id) {
+    BSTNode*p=root;
     while(p!= nullptr){
-        if(p->getKey() == el)
+        if(p->getKey().getId() == id)
             return true;
-        else if(el < p->getKey())
+        else if(id < p->getKey().getId())
             p=p->getLeft();
         else
             p=p->getRight();
@@ -35,17 +25,15 @@ bool BST<T>::search(T el) {
     return false;
 }
 
-
-template<class T>
-void BST<T>::insert(T data) {
-    BSTNode<T>* newNode = new BSTNode<T>(data);
+void BST::insert(Student data) {
+    BSTNode* newNode = new BSTNode(data);
     if (this->root == nullptr) {
         this->root = newNode;
         return;
     }
-    BSTNode<T>* current = this->root;
+    BSTNode* current = this->root;
     while (true) {
-        if (data < current->key) {
+        if (data.getId() < current->key.getId()) {
             if (current->left == nullptr) {
                 current->left = newNode;
                 return;
@@ -61,13 +49,13 @@ void BST<T>::insert(T data) {
         }
     }
 }
-template<class T>
-vector<T> BST<T>::getSorted(vector<T> &v){
+vector<Student> BST::getSorted() {
+    vector<Student> v;
     print(root,v);
     return v;
 }
-template<class T>
-void BST<T>::print(BSTNode<T> *p, vector<T>& v) {
+
+void BST::print(BSTNode*p , vector<Student>& v) {
     if(p!= nullptr){
         print(p->getLeft(),v);
         v.push_back(p->getKey());
@@ -75,12 +63,11 @@ void BST<T>::print(BSTNode<T> *p, vector<T>& v) {
     }
 }
 
-template<class T>
-void BST<T>::deleteNode(T el) {
-    BSTNode<T>* p=root,*prev= nullptr;
-        while(p!=nullptr && p->getKey()!=el){
+void BST::deleteNode(int el) {
+    BSTNode* p=root,*prev= nullptr;
+        while(p!=nullptr && p->getKey().getId()!=el){
             prev=p;
-            if(el > p->getKey())
+            if(el > p->getKey().getId())
                 p=p->right;
             else
                 p=p->left;
@@ -99,7 +86,7 @@ void BST<T>::deleteNode(T el) {
             delete p;
         }
         else if(p->left==nullptr || p->right==nullptr){
-            BSTNode<T>* child;
+            BSTNode* child;
             if(p->left==nullptr)
                 child=p->right;
             else
@@ -113,8 +100,8 @@ void BST<T>::deleteNode(T el) {
             delete p;
         }
         else {
-            BSTNode<T>* minRight = p->right;
-            BSTNode<T>* prevMinRight = p;
+            BSTNode* minRight = p->right;
+            BSTNode* prevMinRight = p;
             while (minRight->left != nullptr) {
                 prevMinRight = minRight;
                 minRight = minRight->left;
@@ -129,11 +116,10 @@ void BST<T>::deleteNode(T el) {
             delete minRight;
         }
     }
-
-template<class T>
-BSTNode<T>* BST<T>::getRoot() {
+    BSTNode* BST::getRoot() {
     return root;
 }
+
 
 
 

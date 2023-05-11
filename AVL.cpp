@@ -1,7 +1,7 @@
 #include "AVL.h"
 using namespace std;
-template<class T>
-int AVL<T>::get_height(AVL_node<T> *node) {
+
+int AVL :: get_height(AVL_node *node) {
     int left = 0 , right = 0;
     if(node->left != nullptr){
         left = node->left->height;
@@ -11,8 +11,8 @@ int AVL<T>::get_height(AVL_node<T> *node) {
     }
     return  1 + max(left , right);
 }
-template<class T>
-int AVL<T>::getBalanceFactor(AVL_node<T> *node) {
+
+int AVL::getBalanceFactor(AVL_node*node) {
     int left = 0 , right = 0;
     if(node->left != nullptr){
         left = node->left->height;
@@ -22,9 +22,9 @@ int AVL<T>::getBalanceFactor(AVL_node<T> *node) {
     }
     return left - right;
 }
-template<class T>
-void AVL<T>::right_rotate(AVL_node<T> *node) {
-    AVL_node<T>* temp = node->left;
+
+void AVL::right_rotate(AVL_node *node) {
+    AVL_node* temp = node->left;
     node->left = temp->right;
     if(temp->right != nullptr){
         temp->right->parent = node;
@@ -47,9 +47,8 @@ void AVL<T>::right_rotate(AVL_node<T> *node) {
     temp->bf = getBalanceFactor(temp);
 
 }
-template<class T>
-void AVL<T>::left_rotate(AVL_node<T> *node) {
-    AVL_node<T>* temp = node->right;
+void AVL::left_rotate(AVL_node *node) {
+    AVL_node* temp = node->right;
     node->right = temp->left;
     if(temp->left != nullptr){
         temp->left->parent = node;
@@ -71,16 +70,15 @@ void AVL<T>::left_rotate(AVL_node<T> *node) {
     node->bf = getBalanceFactor(node);
     temp->bf = getBalanceFactor(temp);
 }
-template<class T>
-void AVL<T>::insert(T key) {
-    AVL_node<T> *node = new AVL_node<T>(key);
+void AVL::insert(Student key) {
+    AVL_node *node = new AVL_node(key);
     if (this->root == nullptr) {
         this->root = node;
         return;
     }
-    AVL_node<T> *temp = this->root;
+    AVL_node*temp = this->root;
     while (true) {
-        if (key < temp->key) {
+        if (key.getId() < temp->key.getId()) {
             if (temp->left == nullptr) {
                 temp->left = node;
                 node->parent = temp;
@@ -121,15 +119,14 @@ void AVL<T>::insert(T key) {
     }
 
 }
-template<class T>
-void AVL<T>::erase(T key) {
-    AVL_node<T>* temp = this->root;
-    AVL_node<T>* node = nullptr;
+void AVL::erase(int key) {
+    AVL_node* temp = this->root;
+    AVL_node* node = nullptr;
     while(temp != nullptr){
-        if(temp->key == key){
+        if(temp->key.getId() == key){
             break;
         }
-        else if(key < temp->key){
+        else if(key < temp->key.getId()){
             temp = temp->left;
         }
         else{
@@ -185,11 +182,11 @@ void AVL<T>::erase(T key) {
         delete temp;
     }
     else{
-        AVL_node<T>* temp2 = temp->right;
+        AVL_node* temp2 = temp->right;
         while(temp2->left != nullptr){
                 temp2 = temp2->left;
             }
-        temp->key = temp2->key;
+            temp->key = temp2->key;
             if(temp2 == temp2->parent->left){
                 temp2->parent->left =  nullptr;
             }
@@ -199,7 +196,7 @@ void AVL<T>::erase(T key) {
             node = temp2->parent;
             delete temp2;
     }
-    AVL_node<T>* temp3 = node;
+    AVL_node* temp3 = node;
     while(node != nullptr){
         node->height = get_height(node);
         node->bf = getBalanceFactor(node);
@@ -224,13 +221,12 @@ void AVL<T>::erase(T key) {
     }
 
 }
-template<class T>
-bool AVL<T>::search(T key) {
-    AVL_node<T> *temp = this->root;
+bool AVL::search(int key) {
+    AVL_node *temp = this->root;
     while (temp != nullptr) {
-        if (temp->key == key) {
+        if (temp->key.getId() == key) {
             return true;
-        } else if (key < temp->key) {
+        } else if (key < temp->key.getId()) {
             temp = temp->left;
         } else {
             temp = temp->right;
@@ -239,20 +235,22 @@ bool AVL<T>::search(T key) {
     return false;
 
 }
-template<class T>
-void AVL<T>::inorder(AVL_node<T> *node, vector<T> &v) {
-    if(node == nullptr)
-        return;
-    inorder(node->left,v);
-    v.push_back(node->key);
-    inorder(node->right,v);
 
-}
-template<class T>
-vector<T> AVL<T>::getSorted(vector<T> &v) {
-    inorder(root,v);
+vector<Student> AVL::getSorted() {
+    vector<Student> v;
+    inorder(this->root, v);
     return v;
 }
+void AVL::inorder(AVL_node *node, vector<Student> &v) {
+    if (node == nullptr)
+        return;
+    inorder(node->left, v);
+    v.push_back(node->key);
+    inorder(node->right, v);
+}
+
+
+
 
 
 
