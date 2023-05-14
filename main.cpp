@@ -9,6 +9,7 @@
 using namespace std;
 
 
+
 void readData(vector<Student> &students){
     ifstream file("input.txt");
     int n;
